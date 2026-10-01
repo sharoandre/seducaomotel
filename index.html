@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motel Luxo | Exclusividade e Sofisticação</title>
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset e estilos globais */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Cabeçalho fixo com efeito de vidro */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: #d4af37;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #d4af37;
+      transition: width 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero section com imagem de fundo */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      letter-spacing: 3px;
+      color: #d4af37;
+      margin-bottom: 2.5rem;
+      text-transform: uppercase;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: transparent;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.4s;
+      cursor: pointer;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .btn:hover {
+      background: #d4af37;
+      color: #0a0a0a;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Seção de suítes */
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .section-title span {
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      letter-spacing: 2px;
+      margin-bottom: 4rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .suites {
+      padding: 7rem 5%;
+      background: #0a0a0a;
+    }
+
+    .grid-suites {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.4s;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .card-img {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+
+    .card:hover .card-img img {
+      transform: scale(1.08);
+    }
+
+    .card-content {
+      padding: 1.8rem;
+    }
+
+    .card-content h3 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #d4af37;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-content p {
+      color: #bbb;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .price {
+      font-size: 1.4rem;
+      color: #fff;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .price span {
+      font-size: 0.9rem;
+      color: #888;
+      font-weight: 300;
+    }
+
+    .card-btn {
+      display: inline-block;
+      padding: 0.7rem 1.8rem;
+      background: transparent;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .card-btn:hover {
+      background: #d4af37;
+      color: #0a0a0a;
+    }
+
+    /* Galeria */
+    .galeria {
+      padding: 7rem 5%;
+      background: #050505;
+    }
+
+    .grid-galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .foto {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      height: 250px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      transition: all 0.3s;
+    }
+
+    .foto:hover {
+      border-color: #d4af37;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+    }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .foto:hover img {
+      transform: scale(1.1);
+    }
+
+    .foto::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .foto:hover::after {
+      opacity: 1;
+    }
+
+    /* Modal para visualização de imagem */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+      transform: scale(0.9);
+      transition: transform 0.3s;
+    }
+
+    .modal.active img {
+      transform: scale(1);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: #d4af37;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+      color: #fff;
+    }
+
+    /* Serviços / diferenciais */
+    .servicos {
+      padding: 7rem 5%;
+      background: #0a0a0a;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .servico-item {
+      flex: 1 1 220px;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+      transition: all 0.3s;
+      background: #0f0f0f;
+    }
+
+    .servico-item:hover {
+      border-color: #d4af37;
+      transform: translateY(-5px);
+      background: #141414;
+    }
+
+    .servico-item i {
+      font-size: 2.5rem;
+      color: #d4af37;
+      margin-bottom: 1.2rem;
+    }
+
+    .servico-item h4 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .servico-item p {
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    /* Depoimentos */
+    .depoimentos {
+      padding: 7rem 5%;
+      background: #050505;
+      text-align: center;
+    }
+
+    .depoimentos-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .depoimento {
+      background: #111;
+      padding: 2.5rem;
+      border-radius: 10px;
+      border-left: 3px solid #d4af37;
+      flex: 1 1 280px;
+      text-align: left;
+      transition: all 0.3s;
+    }
+
+    .depoimento:hover {
+      background: #161616;
+      transform: scale(1.02);
+    }
+
+    .depoimento i {
+      color: #d4af37;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      opacity: 0.6;
+    }
+
+    .depoimento p {
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .depoimento .autor {
+      color: #d4af37;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* Rodapé */
+    footer {
+      background: #030303;
+      padding: 4rem 5% 2rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h4 {
+      color: #d4af37;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #999;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: #d4af37;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      color: #999;
+      font-size: 1.4rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #d4af37;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: #666;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 5%;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      
+      nav ul {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+        letter-spacing: 5px;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+        letter-spacing: 2px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .servicos {
+        gap: 1.5rem;
+      }
+      
+      .modal img {
+        max-width: 95%;
+      }
+      
+      .close-modal {
+        top: 20px;
+        right: 25px;
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.4rem;
+      }
+      
+      nav ul {
+        gap: 0.8rem;
+      }
+      
+      nav a {
+        font-size: 0.7rem;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Scroll personalizado */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #d4af37;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b8942e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Motel <span>Luxo</span></div>
+    <nav>
+      <ul>
+        <li><a href="#suites">Suítes</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Motel Luxo</h1>
+    <p>Onde o desejo encontra a sofisticação</p>
+    <a href="#suites" class="btn">Explorar Suítes</a>
+  </section>
+
+  <section id="suites" class="suites">
+    <h2 class="section-title">Nossas <span>Suítes</span></h2>
+    <p class="subtitle">Elegância e conforto em cada detalhe</p>
+    
+    <div class="grid-suites">
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop" alt="Suíte Presidencial">
+        </div>
+        <div class="card-content">
+          <h3>Suíte Presidencial</h3>
+          <p>Ampla suíte com hidromassagem, cama king size, iluminação cênica e vista panorâmica. Perfeita para momentos inesquecíveis.</p>
+          <div class="price">R$ 890 <span>/ pernoite</span></div>
+          <button class="card-btn" onclick="alert('Reserva para Suíte Presidencial! Entre em contato.')">Reservar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop" alt="Suíte Master">
+        </div>
+        <div class="card-content">
+          <h3>Suíte Master</h3>
+          <p>Design contemporâneo, banheira de imersão, cama queen, som ambiente e serviço de quarto 24h. Luxo e privacidade.</p>
+          <div class="price">R$ 650 <span>/ pernoite</span></div>
+          <button class="card-btn" onclick="alert('Reserva para Suíte Master! Entre em contato.')">Reservar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2070&auto=format&fit=crop" alt="Suíte Deluxe">
+        </div>
+        <div class="card-content">
+          <h3>Suíte Deluxe</h3>
+          <p>Ambiente aconchegante com espelho no teto, cama redonda, frigobar completo e decoração temática. Sensual e moderna.</p>
+          <div class="price">R$ 480 <span>/ pernoite</span></div>
+          <button class="card-btn" onclick="alert('Reserva para Suíte Deluxe! Entre em contato.')">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" class="galeria">
+    <h2 class="section-title">Galeria <span>Exclusiva</span></h2>
+    <p class="subtitle">Clique nas imagens para ampliar</p>
+    
+    <div class="grid-galeria">
+      <div class="foto" onclick="openModal('https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop')">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop" alt="Suíte de luxo">
+      </div>
+      <div class="foto" onclick="openModal('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop')">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop" alt="Banheira de imersão">
+      </div>
+      <div class="foto" onclick="openModal('https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2070&auto=format&fit=crop')">
+        <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2070&auto=format&fit=crop" alt="Cama redonda">
+      </div>
+      <div class="foto" onclick="openModal('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop')">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop" alt="Iluminação cênica">
+      </div>
+      <div class="foto" onclick="openModal('https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=2057&auto=format&fit=crop')">
+        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=2057&auto=format&fit=crop" alt="Detalhes de luxo">
+      </div>
+      <div class="foto" onclick="openModal('https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1974&auto=format&fit=crop')">
+        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1974&auto=format&fit=crop" alt="Espelho no teto">
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <img id="modalImg" src="" alt="Imagem ampliada">
+  </div>
+
+  <section id="servicos" class="servicos">
+    <div class="servico-item">
+      <i class="fas fa-concierge-bell"></i>
+      <h4>Serviço 24h</h4>
+      <p>Atendimento personalizado a qualquer hora do dia ou da noite.</p>
+    </div>
+    <div class="servico-item">
+      <i class="fas fa-wine-glass-alt"></i>
+      <h4>Frigobar Premium</h4>
+      <p>Bebidas selecionadas e petiscos finos em todas as suítes.</p>
+    </div>
+    <div class="servico-item">
+      <i class="fas fa-spa"></i>
+      <h4>Spa & Hidro</h4>
+      <p>Hidromassagens relaxantes e produtos de banho importados.</p>
+    </div>
+    <div class="servico-item">
+      <i class="fas fa-parking"></i>
+      <h4>Estacionamento Privativo</h4>
+      <p>Garagem coberta e discreta com acesso direto à suíte.</p>
+    </div>
+    <div class="servico-item">
+      <i class="fas fa-music"></i>
+      <h4>Som Ambiente</h4>
+      <p>Sistema de áudio integrado com playlist personalizável.</p>
+    </div>
+    <div class="servico-item">
+      <i class="fas fa-shield-alt"></i>
+      <h4>Privacidade Total</h4>
+      <p>Discrição absoluta e segurança para o seu momento.</p>
+    </div>
+  </section>
+
+  <section id="depoimentos" class="depoimentos">
+    <h2 class="section-title">O que dizem <span>nossos hóspedes</span></h2>
+    <p class="subtitle">Experiências inesquecíveis</p>
+    
+    <div class="depoimentos-container">
+      <div class="depoimento">
+        <i class="fas fa-quote-left"></i>
+        <p>Simplesmente perfeito! A Suíte Presidencial superou todas as expectativas. Ambiente sofisticado, limpo e extremamente privativo. Voltaremos com certeza.</p>
+        <div class="autor">— Carlos M.</div>
+      </div>
+      <div class="depoimento">
+        <i class="fas fa-quote-left"></i>
+        <p>O atendimento é impecável e a decoração é de tirar o fôlego. Cada detalhe pensado para proporcionar uma experiência única. Recomendo a todos!</p>
+        <div class="autor">— Juliana R.</div>
+      </div>
+      <div class="depoimento">
+        <i class="fas fa-quote-left"></i>
+        <p>Já conhecia o Motel Luxo, mas a nova Suíte Master me surpreendeu. Tecnologia, conforto e elegância no lugar certo. Nota 10!</p>
+        <div class="autor">— Fernando A.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Motel Luxo</h4>
+        <p>O refúgio perfeito para casais que buscam exclusividade, conforto e momentos inesquecíveis.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p><i class="fas fa-phone-alt" style="color:#d4af37; margin-right:8px;"></i> (11) 4002-8922</p>
+        <p><i class="fas fa-envelope" style="color:#d4af37; margin-right:8px;"></i> reservas@motelluxo.com</p>
+        <p><i class="fas fa-map-marker-alt" style="color:#d4af37; margin-right:8px;"></i> Av. das Estrelas, 1000 - São Paulo/SP</p>
+      </div>
+      <div class="footer-col">
+        <h4>Horários</h4>
+        <p>Check-in: 14h</p>
+        <p>Check-out: 12h</p>
+        <p>Pernoite: 22h às 12h</p>
+        <p>Atendimento: 24 horas</p>
+      </div>
+      <div class="footer-col">
+        <h4>Links Rápidos</h4>
+        <a href="#suites">Suítes</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#depoimentos">Depoimentos</a>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Motel Luxo - Todos os direitos reservados. | Design exclusivo e sofisticado.
+    </div>
+  </footer>
+
+  <script>
+    // Função para abrir o modal com a imagem ampliada
+    function openModal(imageSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = imageSrc;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Impede scroll ao fundo
+    }
+
+    // Função para fechar o modal
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto'; // Restaura o scroll
+    }
+
+    // Fechar modal ao clicar fora da imagem
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Fechar modal com a tecla ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // Suavizar scroll para links internos (já está no CSS com scroll-behavior, mas garante compatibilidade)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Efeito de header ao rolar (muda a opacidade)
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.background = 'rgba(10, 10, 10, 0.95)';
+        header.style.padding = '0.8rem 5%';
+      } else {
+        header.style.background = 'rgba(10, 10, 10, 0.85)';
+        header.style.padding = '1rem 5%';
+      }
+    });
+
+    // Animação de fade para os cards ao entrarem na viewport (Intersection Observer)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Aplicar animação inicial nos cards e itens de serviço
+    document.querySelectorAll('.card, .servico-item, .depoimento, .foto').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(el);
+    });
+
+    // Ajuste para elementos já visíveis na carga
+    window.addEventListener('load', function() {
+      document.querySelectorAll('.card, .servico-item, .depoimento, .foto').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
